@@ -31,11 +31,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_yasg',
-    'djoser',
 
     'account',
-    'course',
-    'lesson'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +72,8 @@ WSGI_APPLICATION = 'course_root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'course_db',
-        'USER': 'course_user',
+        'NAME': 'math_course_db',
+        'USER': 'math_course_user',
         'PASSWORD': '1',
         'HOST': 'localhost',
         'PORT': 5432,

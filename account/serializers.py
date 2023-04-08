@@ -12,6 +12,10 @@ class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(required=True, min_length=6)
     password_confirmation = serializers.CharField(required=True, min_length=6)
+    first_name = serializers.CharField(required=True, min_length=1)
+    last_name = serializers.CharField(required=True, min_length=1)
+    male = serializers.CharField(required=True)
+    position = serializers.CharField(required=True)
 
     def validate_email(self, email):
         if User.objects.filter(email=email, is_active=True).exists():
@@ -21,9 +25,16 @@ class RegisterSerializer(serializers.Serializer):
     def validate(self, attrs):
         password = attrs.get('password')
         password_confirmation = attrs.pop('password_confirmation')
+        male = attrs.get('male')
+        position = attrs.get('position')
         if password != password_confirmation:
             raise serializers.ValidationError('Пароли не совподают')
+        if male not in ('male', 'female'):
+            raise serializers.ValidationError('choose valid male')
+        if position not in ('student', 'teacher'):
+            raise serializers.ValidationError('choose valid position')
         return attrs
+
 
     def create(self):
         attrs = self.validated_data

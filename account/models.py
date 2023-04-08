@@ -25,10 +25,16 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    male_choice = (('male', 'male'), ('female', 'female'))
+    position_choice = (('student', 'student'), ('teacher', 'teacher'))
     email = models.EmailField(primary_key=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     activation_code = models.CharField(max_length=8, blank=True, default='')
+    first_name = models.CharField(max_length=50, blank=False, default='')
+    last_name = models.CharField(max_length=50, blank=False, default='')
+    male = models.CharField(choices=male_choice, max_length=20, blank=False)
+    position = models.CharField(choices=position_choice, max_length=20, blank=False)
 
     objects = UserManager()
 

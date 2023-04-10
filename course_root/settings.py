@@ -33,9 +33,9 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     'account',
-    'course.apps.CourseConfig'
-    'group.apps.GroupConfig'
-    'quiz.apps.QuizConfig'
+    'course.apps.CourseConfig',
+    'group.apps.GroupConfig',
+    'quiz.apps.QuizConfig',
 ]
 
 MIDDLEWARE = [

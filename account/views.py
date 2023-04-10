@@ -1,13 +1,15 @@
+from django.db.models import Q
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import get_object_or_404
+from rest_framework.generics import get_object_or_404, ListAPIView
 
 from .permission import PermissionMixin
 from .serializers import *
@@ -70,6 +72,11 @@ class ForgotPasswordCompleteView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.set_new_pass()
         return Response('Пароль успешно обновлён')
-#
-#
 
+
+class SearchUser(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = SearchUserSerializer
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['first_name', "last_name"]
+    filterset_fields = ['position', 'male']

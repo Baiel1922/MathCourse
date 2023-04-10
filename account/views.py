@@ -74,9 +74,11 @@ class ForgotPasswordCompleteView(APIView):
         return Response('Пароль успешно обновлён')
 
 
-class SearchUser(ListAPIView):
+class ListUserView(ListAPIView):
     queryset = User.objects.all()
-    serializer_class = SearchUserSerializer
+    serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['first_name', "last_name"]
     filterset_fields = ['position', 'male']
+
+

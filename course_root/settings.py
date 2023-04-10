@@ -34,6 +34,8 @@ INSTALLED_APPS = [
 
     'account',
     'course.apps.CourseConfig'
+    'group.apps.GroupConfig'
+    'quiz.apps.QuizConfig'
 ]
 
 MIDDLEWARE = [

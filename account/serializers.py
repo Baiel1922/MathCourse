@@ -143,4 +143,9 @@ class ForgetPasswordCompleteSerializer(serializers.Serializer):
         user.save()
 
 
+class SearchUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
 

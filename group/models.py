@@ -7,11 +7,12 @@ from course.models import Course
 class Group(models.Model):
     title = models.CharField()
     description = models.TextField()
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='groups')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='groups')
 
 class GroupStudent(models.Model):
     points = models.IntegerField()
     score = models.IntegerField()
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='group_students')
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='group_students')
+

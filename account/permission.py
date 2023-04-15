@@ -1,4 +1,4 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 class IsActivePermission(BasePermission):
 
@@ -18,3 +18,10 @@ class PermissionMixin:
         else:
             permissions = [IsAuthenticated]
         return [permission() for permission in permissions]
+
+class IsAdminOrReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+
+        return bool(request.user and request.user.is_staff)

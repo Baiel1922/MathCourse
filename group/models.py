@@ -5,7 +5,7 @@ from course.models import Course
 
 
 class Group(models.Model):
-    title = models.CharField()
+    title = models.CharField(max_length=500)
     description = models.TextField()
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='groups')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='groups')

@@ -6,34 +6,25 @@ from rest_framework.response import Response
 from rest_framework import viewsets, mixins
 from course.models import Course ,Topic , Unit
 from course.serializers import CourseSerializer ,TopicSerializer , UnitSerializer
+from rest_framework.viewsets import ModelViewSet
+from account.permission import IsAdminOrReadOnly
 
-from MathCourse.course.permissions import IsAdminOrReadOnly
 
-
-class CourseViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = (IsAdminOrReadOnly ,)
 
 
-class UnitViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class UnitViewSet(ModelViewSet):
     queryset = Unit.objects.all()
     serializer_class = UnitSerializer
     permission_classes = (IsAdminOrReadOnly)
 
 
-class TopicViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class TopicViewSet(ModelViewSet):
     queryset = Topic.objects.all()
-    serializer = UnitSerializer
+    serializer_class = TopicSerializer
     permission_classes = (IsAdminOrReadOnly ,)
 
 

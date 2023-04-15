@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-
+from rest_framework.permissions import IsAuthenticated
 from account.permission import IsActivePermission
 from group.models import Group, GroupStudent
 from group.serializers import GroupSerializers, GroupStudentSerializers
@@ -9,9 +9,12 @@ from account.permission import IsAuthorPermission
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializers
-    permission_classes = [IsAuthorPermission, ]
+    permission_classes = [IsAuthenticated, ]
+
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(teacher=self.request.user)
+
+
 
 
 class GroupStudentViewSet(viewsets.ModelViewSet):
@@ -22,5 +25,5 @@ class GroupStudentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         queryset = super().get_queryset()
-        queryset = queryset.filter(user=user)
+        queryset = queryset.filter(student=user)
         return queryset

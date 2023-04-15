@@ -7,7 +7,7 @@ class Quiz(models.Model):
 
 class Question(models.Model):
     text = models.CharField(max_length=500, unique=True)
-    question = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="questions")
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="questions")
 
 class Answer(models.Model):
     text = models.CharField(max_length=500, unique=True)

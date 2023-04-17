@@ -5,7 +5,7 @@ from django.db import models
 class Course(models.Model):
     title = models.CharField(max_length=250, unique=True, blank=False, null=False)
     text = models.TextField(blank=True, null=True)
-    cover = models.ImageField(upload_to='covers', blank=True, null=True)
+    cover = models.ImageField(upload_to='media', blank=True, null=True)
 
     def __str__(self):
         return self.title

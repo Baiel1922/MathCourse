@@ -83,15 +83,26 @@ WSGI_APPLICATION = 'course_root.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': os.getenv('DATABASE_URL'),
+#         'NAME': os.getenv('PGDATABASE'),
+#         'USER': os.getenv('PGUSER'),
+#         'PASSWORD': os.getenv('PGPASSWORD'),
+#         'HOST': os.getenv('PGHOST'),
+#         'PORT': os.getenv('PGPORT'),
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.getenv('DATABASE_URL'),
-        'NAME': os.getenv('PGDATABASE'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('PGPASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT'),
+        'URL': 'postgresql://postgres:BfQYDZW9R0NnHQ5ZBquC@containers-us-west-36.railway.app:5981/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'BfQYDZW9R0NnHQ5ZBquC',
+        'HOST': 'containers-us-west-36.railway.app',
+        'PORT': '5981',
     }
 }
 

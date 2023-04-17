@@ -32,9 +32,9 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_yasg',
 
-    'account',
+    # 'account',
     'course.apps.CourseConfig',
-    'group.apps.GroupConfig',
+    # 'group.apps.GroupConfig',
     'quiz.apps.QuizConfig',
 ]
 
@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTH_USER_MODEL = 'account.User'
+# AUTH_USER_MODEL = 'account.User'
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Asia/Bishkek'
@@ -142,12 +142,12 @@ REST_FRAMEWORK = {
     ]
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alatoocourse@gmail.com'
-EMAIL_HOST_PASSWORD = 'ilybzruejhpsolfj'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'alatoocourse@gmail.com'
+# EMAIL_HOST_PASSWORD = 'ilybzruejhpsolfj'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

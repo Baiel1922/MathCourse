@@ -1,43 +1,45 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view
-from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework import viewsets, mixins
-from course.models import Course ,Topic , Unit
-from course.serializers import CourseSerializer ,TopicSerializer , UnitSerializer
 
-from MathCourse.course.permissions import IsAdminOrReadOnly
+from .permissions import IsAdminOrReadOnly
+from .models import Course, Topic, Unit, TopicPhoto, \
+    Example, ExamplePhoto, ExampleNumber
+from .serializers import CourseListSerializer, CourseRetrieveSerializer, TopicRetrieveSerializer, \
+    TopicListSerializer, UnitRetrieveSerializer, UnitListSerializer
 
 
-class CourseViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class CourseViewset(ModelViewSet):
     queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    permission_classes = (IsAdminOrReadOnly ,)
+    serializer_class = CourseListSerializer
+    permission_classes = (IsAdminOrReadOnly, )
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = CourseRetrieveSerializer(instance)
+        return Response(serializer.data)
 
 
-class UnitViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class UnitViewset(ModelViewSet):
     queryset = Unit.objects.all()
-    serializer_class = UnitSerializer
-    permission_classes = (IsAdminOrReadOnly)
+    serializer_class = UnitListSerializer
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = UnitRetrieveSerializer(instance)
+        return Response(serializer.data)
 
 
-class TopicViewSet(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    GenericAPIView):
+class TopicViewSet(ModelViewSet):
     queryset = Topic.objects.all()
-    serializer = UnitSerializer
-    permission_classes = (IsAdminOrReadOnly ,)
+    serializer_class = TopicListSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
-
-
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = TopicRetrieveSerializer(instance)
+        return Response(serializer.data)
 
 
 

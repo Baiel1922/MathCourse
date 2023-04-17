@@ -1,14 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import CourseViewSet , UnitViewSet , TopicViewSet
+from .views import CourseViewset, UnitViewset, TopicViewSet
 
 router = DefaultRouter()
-router.register('Course', CourseViewSet)
-router.register('Topics',TopicViewSet)
-router.register('Units' ,UnitViewSet)
+router.register('course', CourseViewset)
+router.register('unit', UnitViewset)
+router.register('topic', TopicViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
 ]
-urlpatterns.extend(router.urls)

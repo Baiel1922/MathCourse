@@ -1,14 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import QuizListView, QuestionListView, AnswerListView, SubmissionViewset
+from .views import QuizViewset, QuestionViewset, AnswerViewset
+
 router = DefaultRouter()
-router.register('submission', SubmissionViewset)
+router.register('quiz', QuizViewset)
+router.register('question', QuestionViewset)
+router.register('answer', AnswerViewset)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('quiz/', QuizListView.as_view()),
-    path('question/', QuestionListView.as_view()),
-    path('answer/', AnswerListView.as_view()),
+    path('', include(router.urls))
 ]
-urlpatterns.extend(router.urls)

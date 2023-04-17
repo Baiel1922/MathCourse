@@ -9,19 +9,19 @@ from rest_framework.routers import DefaultRouter
 
 from course_root import settings
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title='Tutorial API',
-        default_version='v1',
-        description='Test Description',
-    ),
-    public=True
-)
-router = DefaultRouter()
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title='Tutorial API',
+#         default_version='v1',
+#         description='Test Description',
+#     ),
+#     public=True
+# )
+# router = DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('course/', include('course.urls')),
     path('quiz/', include('quiz.urls'))
     # path('account/', include('account.urls')),

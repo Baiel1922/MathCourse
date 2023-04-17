@@ -144,7 +144,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 MEDIA_URL = '/var/task/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

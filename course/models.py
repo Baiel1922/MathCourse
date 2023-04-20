@@ -32,7 +32,7 @@ class Topic(models.Model):
 
 class TopicPhoto(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="photos")
-    photo = models.ImageField(upload_to="topic_photos")
+    photo = models.TextField()
 
     def __str__(self):
         return f'{self.topic}'
@@ -47,7 +47,7 @@ class Example(models.Model):
 
 class ExamplePhoto(models.Model):
     example = models.ForeignKey(Example, on_delete=models.CASCADE, related_name="photos")
-    photo = models.ImageField(upload_to="example_photos")
+    photo = models.TextField()
 
     def __str__(self):
         return f'photo of {self.example}'

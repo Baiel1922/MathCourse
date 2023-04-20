@@ -2,7 +2,7 @@ from django.db import models
 from course.models import Topic
 
 class Quiz(models.Model):
-    title = models.CharField(max_length=500, unique=True)
+    title = models.CharField(max_length=500, blank=True, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name="quizes")
 
     def __str__(self):
